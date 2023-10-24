@@ -32,7 +32,7 @@ WORKDIR /usr/app
 USER javauser
 
 # Copy the jar file built in the first stage
-COPY --from=builder /usr/src/app/target/qosocial-api-0.0.1.jar ./qosocial-api-0.0.1.jar
+COPY --from=builder /usr/src/app/target/v2test-0.0.1.jar ./v2test-0.0.1.jar
 
 # Set the spring profiles active environment variable
 # spring will automatically grab this env and apply it, no need to manually inject into app.properties
@@ -42,6 +42,6 @@ ENV SPRING_PROFILES_ACTIVE=prod
 EXPOSE 8080
 
 # Run your jar file
-ENTRYPOINT ["java","-jar","./qosocial-api-0.0.1.jar"]
+ENTRYPOINT ["java","-jar","./v2test-0.0.1.jar"]
 
 
