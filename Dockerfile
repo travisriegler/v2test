@@ -2,15 +2,6 @@
 # Use the official Corretto-Alpine image to create a build artifact.
 FROM docker.io/amazoncorretto:17-alpine3.18-jdk as builder
 
-
-# Arguments for AWS credentials
-ARG AWS_ACCESS_KEY_ID
-ARG AWS_SECRET_ACCESS_KEY
-
-# Environment variables for AWS credentials
-ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-
 # Download and install Maven 3.9.4
 ENV MAVEN_VERSION 3.9.4
 RUN wget -q https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
@@ -25,7 +16,7 @@ COPY src ./src
 COPY pom.xml ./
 
 # Build a release artifact
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # Use the official openjdk image for a base image.
 # It's based on Debian and sets the JAVA_VERSION in the environment to your project's pom.xml
