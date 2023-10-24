@@ -5,6 +5,7 @@ on:
     branches:
       - main
 
+
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
@@ -21,6 +22,7 @@ jobs:
         with:
           distribution: 'corretto'
           java-version: '17'
+
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -49,7 +51,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/v2test:${{ github.run_number }},
             ${{ secrets.DOCKERHUB_USERNAME }}/v2test:latest
-
 
 
 
