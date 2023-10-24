@@ -26,5 +26,5 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::881990811866:role/Github_Actions_Full_EC2_Access
           role-session-name: samplerolesession
-          aws-region: "us-east-1“
+          aws-region: "us-east-1"
 
